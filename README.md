@@ -1,9 +1,16 @@
 # node_task_manager
 API REST Lista de Tarefas com autenticação com facebook.
 
-### Libs
+### Pré requisitos
 - Node v10.16 LTS [Baixar](https://nodejs.org/en/)
 - MongoDB Community Server [Baixar](https://www.mongodb.com/download-center/community)
+
+### Executando a aplicação
+Instale os pacotes
+> npm install
+
+Rodando
+> npm start
 
 ### Ferramentas
 - Postman [Baixar](https://www.getpostman.com/downloads/)
