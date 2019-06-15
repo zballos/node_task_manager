@@ -8,4 +8,9 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true }
 })
 
+userSchema.path('email').validate(function (email) {
+    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailRegex.test(email);
+}, 'E-mail inválido!')
+
 module.exports = restful.model('User', userSchema)
