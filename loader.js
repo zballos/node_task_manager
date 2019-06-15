@@ -1,4 +1,4 @@
-const server = require('./config/server')
+const server = require('./app/config/server')
 
-require('./config/database')
-require('./config/routes')(server)
+require('./app/config/database')
+require('./app/config/routes')(server)
