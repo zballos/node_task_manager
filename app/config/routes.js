@@ -18,11 +18,11 @@ module.exports = function(server) {
     server.post('/users/authenticate', UserController.authenticate)
 
     //TaskList
-    server.get('/taskList', TaskListController.index)
-    server.post('/taskList', TaskListController.save)
-    server.get('/taskList/:id', TaskListController.get)
-    server.put('/taskList/:id', TaskListController.update)
-    server.delete('/taskLists/:id', TaskListController.delete)
+    server.get('/task_list', TaskListController.index)
+    server.post('/task_list', TaskListController.save)
+    server.get('/task_list/:id', TaskListController.get)
+    server.put('/task_list/:id', TaskListController.update)
+    server.delete('/task_list/:id', TaskListController.delete)
 
     //Task
     server.get('/task', TaskController.index)
