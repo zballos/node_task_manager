@@ -12,7 +12,7 @@ variables:
   azureSubscription: '72b66d77-1d11-4cfd-a632-e26b4b655483'
   
   # Web app name
-  webAppName: 'Node.TaskManager'
+  webAppName: 'node-taskmanager'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
