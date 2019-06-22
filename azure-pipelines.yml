@@ -33,7 +33,7 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        sudo apt-get install -y mongodb-org
+        sudo apt-get install -y mongodb
         sudo service mongod start
       displayName: 'install and start mongodb'
 
