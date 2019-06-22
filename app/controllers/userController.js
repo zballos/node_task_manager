@@ -31,7 +31,8 @@ class UserController {
     }
 
     async get(req, res) {
-        var user = await User.findOne({ _id: req.params.id }).exec()
+        var user = await User.findById(req.params.user_id).exec();
+        
         if (!user) {
             return res.status(404).json({ 'message': 'Usuário não encontrado' })
         }
@@ -40,20 +41,59 @@ class UserController {
     }
 
     async update(req, res) {
-        var user = await User.findOne({ _id: req.params.id }).exec()
+        var user = await User.findOne({ _id: req.params.user_id }).exec()
         if (!user) {
             return res.status(404).json({ 'message': 'Usuário não encontrado' })
         }
-        user.username = req.body.username
+
+        user.name = req.body.name
+        user.email = req.body.email
+        user.avatar = req.body.avatar
         user.password = req.body.password
-        user = await user.save()
-     
-        return res.json(user)
+        
+        await user.save()
+            .then(data => {
+                res.json(data)
+            })
+            .catch(error => {
+                res.status(500).json({ 'message': error.message })
+            });
     }
 
     async delete(req, res) {
-        await User.findByIdAndRemove(req.params.id)
-        return res.status(204).json({})
+        var user = await User.findOne({ _id: req.params.user_id }).exec()
+        if (!user) {
+            return res.status(404).json({ 'message': 'Usuário não encontrado!' })
+        }
+
+        await User.findByIdAndRemove(req.params.user_id)
+        return res.status(204).json({'message': 'Usuário excluído!'})
+    }
+
+    async forgot_password(req, res) {
+        var user = await User.findOne({ email: req.body.email }).exec();
+        
+        if (!user) {
+            return res.status(500).json({ 'message': 'E-mail não existe.' })
+        }
+
+        // TODO: Enviar e-mail com token para troca de senha.
+        return res.json(user)
+    }
+
+    async authenticate(req, res) {
+        if (!req.body.email || !req.body.password) {
+            return res.status(500).json({ 'message': 'E-mail e senha obrigatórios.' })
+        }
+            
+        var user = await User.findOne({ email: req.body.email, password: req.body.password }).exec();
+
+        if (!user) {
+            return res.status(500).json({ 'message': 'E-mail ou senha inválidos.' })
+        }
+
+        //TODO: Criptografar e decriptografar senha
+        return res.json(user)
     }
 }
 

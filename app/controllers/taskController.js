@@ -3,22 +3,42 @@ var Task = require('../models/task')
 class TaskController {
 
     async index(req, res) {
-        var task = await Task.find().exec()
+        console.log(req.params)
+        if (!req.params.task_list_id) {
+            return res.status(404).json({ 'message': 'Apenas tarefas da lista.' })
+        }
+
+        var task = await Task.find({ task_list_id: req.params.task_list_id }).exec()
         res.json(task)
     }
 
     async save (req, res) {
+        if (!req.params.task_list_id) {
+            return res.status(404).json({ 'message': 'Lista tarefas e obrigatório.' })
+        }
+        
         var task = await new Task({
-            task_list_id: req.body.task_list_id,
+            task_list_id: req.params.task_list_id,
             description: req.body.description,
             status: req.body.status
-        }).save()
+        });
 
-        res.json(task)
+        await task
+            .save()
+            .then(data => {
+                res.json(data)
+            })
+            .catch(error => {
+                res.status(500).json({ 'message': error.message })
+            });
     }
 
     async get(req, res) {
-        var task = await Task.findOne({ _id: req.params.id }).exec()
+        if (!req.params.task_list_id) {
+            return res.status(404).json({ 'message': 'Lista tarefas e obrigatório.' })
+        }
+
+        var task = await Task.findById({ _id: req.params.id }).exec()
         if (!task) {
             return res.status(404).json({ 'message': 'Tarefa não encontrada' })
         }
@@ -31,16 +51,29 @@ class TaskController {
         if (!task) {
             return res.status(404).json({ 'message': 'Tarefa não encontrada' })
         }
-        task.description = req.body.description
-        task.status = req.body.status
-        task = await task.save()
-     
-        return res.json(task)
+        var task = await new Task({
+            task_list_id: req.params.task_list_id,
+            description: req.body.description,
+            status: req.body.status
+        });
+
+        await task
+            .save()
+            .then(data => {
+                res.json(data)
+            })
+            .catch(error => {
+                res.status(500).json({ 'message': error.message })
+            });
     }
 
     async delete(req, res) {
+        if (!req.params.task_list_id) {
+            return res.status(404).json({ 'message': 'Lista tarefas e obrigatório.' })
+        }
+
         await Task.findByIdAndRemove(req.params.id)
-        return res.status(204).json({})
+        return res.status(204).json({'message': 'Lista de tarefas excluída.'})
     }
 }
 
