@@ -33,6 +33,11 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
+        sudo apt-get install -y mongodb-org
+        sudo service mongod start
+      displayName: 'install and start mongodb'
+
+    - script: |
         npm install
       displayName: 'npm install, build and test'
       
@@ -77,4 +82,4 @@ stages:
               appName: $(webAppName)
               runtimeStack: 'NODE|10.10'
               package: $(System.ArtifactsDirectory)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'
+              startUpCommand: 'npm start'
