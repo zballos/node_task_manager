@@ -18,7 +18,7 @@ class TaskController {
     }
 
     async get(req, res) {
-        var task = await Task.findOne({ _id: req.params.id }).exec()
+        var task = await Task.findById({ _id: req.params.id }).exec()
         if (!task) {
             return res.status(404).json({ 'message': 'Tarefa não encontrada' })
         }
