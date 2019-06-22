@@ -21,6 +21,7 @@ Rodando
 - REST Api node (Express and Mongo) [Ver Artigo](https://medium.com/@thiagoluiz.nunes/rest-api-com-node-js-express-and-mongodb-3967c2cb25b7)
 - Aplicação Restful Node, Express com MongoDB [Ver Artigo](https://code4coders.wordpress.com/2016/10/14/desenvolvendo-uma-aplicacao-restful-api-em-node-js-express-js-com-mongodb/) 
 - Mongoose API [Ver Documentação](https://mongoosejs.com/docs/api.html)
+- Node + Mongo + Express [Ver Artigo](https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/)
 
 ### Equipe
 - [zballos](https://github.com/zballos)
