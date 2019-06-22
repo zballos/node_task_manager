@@ -12,6 +12,10 @@ class TaskListController {
     }
 
     async save (req, res) {
+        if (!req.body.user_id) {
+            return res.status(404).json({ 'message': 'Informe um usuário.' })
+        }
+        
         var taskList = await new TaskList({
             user_id: req.body.user_id,
             name: req.body.name,

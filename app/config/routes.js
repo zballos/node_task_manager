@@ -25,9 +25,9 @@ module.exports = function(server) {
     server.delete('/task_list/:id', TaskListController.delete)
 
     //Task
-    server.get('/task', TaskController.index)
-    server.post('/task', TaskController.save)
-    server.get('/task/:id', TaskController.get)
-    server.put('/task/:id', TaskController.update)
-    server.delete('/task/:id', TaskController.delete)
+    server.get('/task_list/:task_list_id/task', TaskController.index)
+    server.post('/task_list/:task_list_id/task', TaskController.save)
+    server.get('/task_list/:task_list_id/task/:id', TaskController.get)
+    server.put('/task_list/:task_list_id/task/:id', TaskController.update)
+    server.delete('/task_list/:task_list_id/task/:id', TaskController.delete)
 }
