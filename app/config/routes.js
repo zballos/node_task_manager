@@ -14,6 +14,8 @@ module.exports = function(server) {
     server.get('/users/:user_id', UserController.get)
     server.put('/users/:user_id', UserController.update)
     server.delete('/users/:user_id', UserController.delete)
+    server.post('/users/forgot_password', UserController.forgot_password)
+    server.post('/users/authenticate', UserController.authenticate)
 
     //TaskList
     server.get('/taskList', TaskListController.index)

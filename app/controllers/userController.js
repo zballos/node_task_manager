@@ -69,6 +69,32 @@ class UserController {
         await User.findByIdAndRemove(req.params.user_id)
         return res.status(204).json({'message': 'Usuário excluído!'})
     }
+
+    async forgot_password(req, res) {
+        var user = await User.findOne({ email: req.body.email }).exec();
+        
+        if (!user) {
+            return res.status(500).json({ 'message': 'E-mail não existe.' })
+        }
+
+        // TODO: Enviar e-mail com token para troca de senha.
+        return res.json(user)
+    }
+
+    async authenticate(req, res) {
+        if (!req.body.email || !req.body.password) {
+            return res.status(500).json({ 'message': 'E-mail e senha obrigatórios.' })
+        }
+            
+        var user = await User.findOne({ email: req.body.email, password: req.body.password }).exec();
+
+        if (!user) {
+            return res.status(500).json({ 'message': 'E-mail ou senha inválidos.' })
+        }
+
+        //TODO: Criptografar e decriptografar senha
+        return res.json(user)
+    }
 }
 
 exports = module.exports = new UserController()
