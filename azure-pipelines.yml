@@ -85,4 +85,4 @@ stages:
               appName: $(webAppName)
               runtimeStack: 'NODE|10.10'
               package: $(System.ArtifactsDirectory)/drop/$(Build.BuildId).zip
-              startUpCommand: 'sudo service mongod start && npm start'
+              startUpCommand: 'service mongod start && npm start'
