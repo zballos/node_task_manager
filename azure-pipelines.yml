@@ -34,8 +34,7 @@ stages:
 
     - script: |
         sudo apt-get install -y mongodb
-        sudo systemctl enable mongod
-        sudo service mongod start
+        sudo service mongo start
       displayName: 'install and start mongodb'
 
     - script: |
