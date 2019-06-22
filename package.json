@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon loader.js"
+    "start": "node loader.js",
+    "start-local": "nodemon loader.js"
   },
   "repository": {
     "type": "git",
