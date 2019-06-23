@@ -1,11 +1,16 @@
-const porta = 4000;
+const porta = 8081;
 
-const bodyParser = require('body-parser')
 const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const morgan = require('morgan')
+
 const server = express()
 
 server.use(bodyParser.urlencoded({extended: true}))
+server.use(morgan('combined'))
 server.use(bodyParser.json())
+server.use(cors())
 
 server.use(function(req, res, next){
     res.setHeader("Access-Control-Allow-Origin", "*");
