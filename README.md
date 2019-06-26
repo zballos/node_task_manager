@@ -10,7 +10,8 @@ Instale os pacotes
 > npm install
 
 Rodando
-> npm start
+> npm start 
+> npm run start-local
 
 ### Ferramentas
 - Postman [Baixar](https://www.getpostman.com/downloads/)
