@@ -75,6 +75,7 @@ module.exports = function(server) {
     server.post('/users/forgot_password', UserController.forgot_password)
     server.post('/users/authenticate', UserController.authenticate)
     server.get('/users_by_email/', UserController.get_by_email)
+    server.post('/users/save_facebook_user', UserController.save_facebook_user)
 
     //TaskList
     server.get('/task_list', TaskListController.index)
@@ -101,6 +102,4 @@ module.exports = function(server) {
             failureRedirect : "/",
             failWithError: true
         }));
-
-        //console.log(server)
 }
