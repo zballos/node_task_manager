@@ -95,6 +95,39 @@ class UserController {
         //TODO: Criptografar e decriptografar senha
         return res.json(user)
     }
+
+    async get_by_email(req, res) {
+        console.log(req);
+        if (!req.body.email) {
+            return res.status(500).json({ 'message': 'E-mail obrigatório.' })
+        }
+
+        var user = await User.findOne({ email: req.body.email }).exec();
+        console.log(user);
+        return res.json(user);
+    }
+
+    async save_facebook_user(req, res) {
+        if (!req.body.email) {
+            return res.status(500).json({ 'message': 'E-mail obrigatório.' })
+        }
+
+        var user = await User.findOne({ email: req.body.email }).exec();
+        
+        user.name = req.body.name;
+        user.avatar = req.body.picture;
+        user.token = req.body.user_facebook_id
+
+        await user.save()
+            .then(data => {
+                res.json(data)
+            })
+            .catch(error => {
+                res.status(500).json({ 'message': error.message })
+            });
+
+        return res.json(user);
+    }
 }
 
 exports = module.exports = new UserController()

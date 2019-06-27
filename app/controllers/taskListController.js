@@ -52,12 +52,18 @@ class TaskListController {
             return res.status(404).json({ 'message': 'Lista de Tarefas não encontrada' })
         }
 
-        taskList.user_id = req.body.user_id
-        taskList.name = req.body.name
-        taskList.color = req.body.color
-        taskList = await taskList.save()
-     
-        return res.json(taskList)
+        taskList.user_id = req.body.user_id;
+        taskList.name = req.body.name;
+        taskList.color = req.body.color;
+
+        await taskList
+            .save()
+            .then(data => {
+                res.json(data)
+            })
+            .catch(error => {
+                res.status(500).json({ 'message': error.message })
+            });
     }
 
     async delete(req, res) {
@@ -66,5 +72,4 @@ class TaskListController {
     }
 }
 
-//exports = 
-module.exports = new TaskListController()
+exports = module.exports = new TaskListController()

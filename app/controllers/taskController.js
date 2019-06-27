@@ -51,11 +51,10 @@ class TaskController {
         if (!task) {
             return res.status(404).json({ 'message': 'Tarefa não encontrada' })
         }
-        var task = await new Task({
-            task_list_id: req.params.task_list_id,
-            description: req.body.description,
-            status: req.body.status
-        });
+
+        task.task_list_id = req.params.task_list_id;
+        task.description = req.body.description;
+        task.status = req.body.status;
 
         await task
             .save()
@@ -68,6 +67,7 @@ class TaskController {
     }
 
     async delete(req, res) {
+        console.log(req.params)
         if (!req.params.task_list_id) {
             return res.status(404).json({ 'message': 'Lista tarefas e obrigatório.' })
         }
@@ -77,5 +77,4 @@ class TaskController {
     }
 }
 
-//exports = 
-module.exports = new TaskController()
+exports = module.exports = new TaskController()
