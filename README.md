@@ -21,7 +21,7 @@ Rodando
 ### Usuários
 |Method|Rota|Descrição|
 |-|-|-|
-|GET | /users | |
+|GET | /users | 
 |POST |/users |
 |GET |  /users/:user_id |
 |PUT |  /users/:user_id |
@@ -29,6 +29,34 @@ Rodando
 |POST | /users/authenticate |
 |GET | /users/email/:email |
 
+### Usuarios Payloads
+- POST /users
+    ~~~json 
+    {
+        "name": "teste",
+        "avatar": "",
+        "email": "teste@teste.com",
+        "password": "teste12345"
+    }
+    ~~~
+
+- PUT /users/:user_id
+    ~~~json 
+    {
+        "name": "teste",
+        "avatar": "",
+        "email": "teste@teste.com",
+        "password": "teste12345"
+    }
+    ~~~
+
+- POST /users/authenticate
+    ~~~json 
+    {
+        "email": "teste@teste.com",
+        "password": "teste12345"
+    }
+    ~~~
 
 ## Referências
 - Install Mongo on Windows [Ver Artigo](https://medium.com/@LondonAppBrewery/how-to-download-install-mongodb-on-windows-4ee4b3493514)
