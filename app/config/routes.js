@@ -74,7 +74,7 @@ module.exports = function(server) {
     server.delete('/users/:user_id', UserController.delete)
     server.post('/users/forgot_password', UserController.forgot_password)
     server.post('/users/authenticate', UserController.authenticate)
-    server.get('/users_by_email/', UserController.get_by_email)
+    server.get('/users/email/:email', UserController.get_by_email)
     server.post('/users/save_facebook_user', UserController.save_facebook_user)
 
     //TaskList

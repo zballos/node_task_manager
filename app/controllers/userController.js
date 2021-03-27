@@ -98,11 +98,11 @@ class UserController {
 
     async get_by_email(req, res) {
         console.log(req);
-        if (!req.body.email) {
+        if (!req.params.email) {
             return res.status(500).json({ 'message': 'E-mail obrigatório.' })
         }
 
-        var user = await User.findOne({ email: req.body.email }).exec();
+        var user = await User.findOne({ email: req.params.email }).exec();
         console.log(user);
         return res.json(user);
     }
